@@ -1,0 +1,155 @@
+1. 메소드 오버로딩이란? 
+같은 함수의 이름으로 파라미터(매개변수)의 데이터 타입이나 갯수를 다르게 하는 것
+
+2. 생성자 오버로딩이란?
+생성되는 인스턴스의 유형을 구분 가능.
+같은 생성자의 이름으로 파라미터 데이터 타입이나 갯수를 다르게 하는 것
+
+3. 메소드 오버로딩을 적용한 대표적인 함수는?
+println();
+
+4. this의 용도는?
+-this();-다른 생성자 호출. 중복 코드를 줄여줌.
+-this.-객체가 생성되었을 때 자기 자신을 가르킴. 어느위치에서 쓰던 인스턴스 변수를 의미
+
+5. this 함수에 대하여 설명하시오.
+다른 생성자를 호출해서 사용함. 중복된 코드를 줄여줌.
+
+6. 스트링 객체를 생성하는 2가지 방법은?
+String 변수명 = 값;
+Srting 변수명 = new String(값);
+
+7. 아래의 결과를 예측하고,이유를 설명하시오.
+String str1 = "Simple String"; 
+String str2 = "Simple String";
+String str3 = new String("Simple String");
+String str4 = new String("Simple String");
+//참조변수의 참조 값 비교
+if(str1 == str2)
+   System.out.println("str1과 str2는 동일 인스턴스 참조");
+else
+   System.out.println("str1과 str2는 다른 인스턴스 참조");
+//참조변수의 참조 값 비교
+if(str3 == str4)
+   System.out.println("str3과 str4는 동일 인스턴스 참조");
+else
+   System.out.println("str3과 str4는 다른 인스턴스 참조");
+
+첫번째 줄-동일. str2는 str1과 값이 같기 때문에 이미 생성된 str1의 메모리 주소를 str2에 할당
+두번째 줄-다른. new로 객체를 만들면 값과 상관없이 새로운 메모리 주소를 할당하기 때문
+
+8. imutable 에 대하여 설명하시오.
+원본데이터가 변하지 않는다는 뜻.
+String(문자열) 객체와 같이 최초 한 번 생성되면 값이 변하지 않음.
+
+9. 사용자로부터 받은 문자열(영문으로)에서 자음과 모음 개수를 계산하는 프로그램을 작성하라.
+(연속적이로 종료하시겠습니까 y 할때 까지 계속)
+답
+import java.util.Scanner;
+
+class Number {
+	private int vowel, consonant;
+	private String word;
+	private boolean bool = true;
+
+	private void input() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("영어 단어를 소문자로 입력하세요.");
+		word = sc.next();
+	}
+
+	private void turn() {
+		for (int i = 0; i < word.length(); ++i) {
+			char ch = word.charAt(i);
+			switch (ch) {
+			case 'a':
+			case 'e':
+			case 'i':
+			case 'o':
+			case 'u':
+				vowel++;
+				break;
+			default:
+				consonant++;
+
+			}
+		}
+	}
+
+	private void output() {
+		System.out.println("총 글자수는 " + word.length() + "개 입니다.");
+		System.out.println("자음:" + consonant + " 모음:" + vowel);
+	}
+	private void turn2() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("종료하시겠습니까? 종료:y");
+		String yn = sc.next();
+		vowel = 0;
+		consonant = 0;
+		if (yn.equals("y")) {
+			System.out.println("종료되었습니다.");
+			bool = false;
+		}
+	}
+
+	public void result() {
+		do {
+		input();
+		turn();
+		output();
+		turn2();
+		}while (bool);
+	}
+
+}
+
+public class Java02_switch_class {
+	public static void main(String[] args) {
+		Number number = new Number();
+		number.result();
+
+	}
+}
+//모음과 자음갯수를 출력하는 프로그램
+
+10.사용자에게 받은 문자열을 역순으로 화면에 출력하는 프로그램을 작성하시오.
+입력:abcde
+출력:edcba
+
+11.2와 100 사이에 있는 모든 소수(prime number)를 찾는 프로그램을 작성하라. 
+(주어진 정수 k를 2부터 k-1까지의 숫자로 나누어서 나머지가 0인 것이 하나라도 있으면 소수가 아니다.)
+답
+import java.util.Scanner;
+
+class Prime0916 {
+	private int k;
+	private int count = 0;
+
+	public void prime(int k) {
+		System.out.println("숫자입력");
+		Scanner sc = new Scanner(System.in);
+		k = sc.nextInt();
+		for (int i = 2; i <= k; ++i) {
+			for (int j = 2; j < i; ++j) {
+				if (i % j == 0) {
+					count++;
+				}
+			}
+			if (count == 0) {
+				System.out.print(i + ",");
+			}
+			count = 0;
+		}
+	}
+
+}
+
+public class Java04_0916problem11 {
+
+	public static void main(String[] args) {
+		int k = 100;
+		Prime0916 prime = new Prime0916();
+		prime.prime(k);
+	}
+
+}
