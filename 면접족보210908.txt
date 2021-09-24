@@ -1,0 +1,141 @@
+1.  함수는 어떻게 알아 볼 수 있을까? 함수인지를 어떻게 아는가?
+명령어 뒤에 () { 가 붙음(색 변하는것 제외). 반드시 소문자로 시작. 
+
+2. 함수는 어떻게 만들까?
+class 안에 (메인함수 밖에) 명령어 (파라미터) { 로 생성
+
+3. 함수는 어떻게 써먹을까? (함수 호출) 
+메인함수 안에서 명령어(); 로 호출
+
+4.아래를 함수로 만들어라
+printStar(1);
+printStar(2);
+printStar(3);
+
+*
+
+*
+**
+
+*
+**
+***
+
+5.아래를 함수로 만들어라
+printStar(5);
+printStar(4);
+printStar(3);
+
+
+*****
+****
+***
+**
+*
+
+****
+***
+**
+*
+
+***
+**
+*
+답
+	public static void star(int n) {
+		for(int i = 1; i <= n; ++i) {
+			System.out.println("");
+			for(int j = 5; j >= i; --j) {
+				System.out.print("*");
+			}
+
+6. 아래의 함수를 만들고, 해당 함수를 호출하여 확인 하시오.
+함수이름: getGrade( 90 .4)
+출력
+90.4 수 입니다.
+답
+		public static void getGrade(double n) {
+			if (n >= 90) {
+			System.out.println(n + " 수 입니다.");
+			} else if (n >= 80) {
+				System.out.println(n + " 우 입니다.");
+			} else if (n >= 70) {
+				System.out.println(n + " 미 입니다.");
+			} else if (n >= 60) {
+				System.out.println(n + " 양 입니다.");
+			} else {
+				System.out.println(n + " 가 입니다.");
+			}
+	}
+
+
+7. 아래의 함수를 만드시오.
+printGugudan(5); // 1단 부터 5단 까지 출력
+printGugudan(9); // 1단 부터 9단 까지 출력
+답
+	public static void printGugudan(int n) {
+		for (int i = 1; i <= n; ++i) {
+			for (int j = 1; j <= 9; ++j) {
+				System.out.println(i + "*" + j + "=" + (i*j));
+			}
+		}
+	}
+
+8. 아래의 함수를 만드시오.
+printGugudan(1, 100); // 1부터 100까지의 합
+printGugudan(3, 1000); // 3부터 1000까지의 합
+-만약 
+-printGugudan(1000, 3); 처럼 위치가 바뀌어도  3부터 1000까지의 합으로 출력 할것
+답
+	public static void print(int n1, int n2) {
+		int all = 0;
+		for (int i = (n1 > n2? n2 : n1); i <= (n1 > n2? n1 : n2); ++i) {
+			all+=i;
+		}
+		System.out.println(all);
+		
+	}
+
+9. 아래의 함수를 만드시오.
+getCircleArea(10);   
+출력 - 원의 넓이는 314 입니다.
+답
+	public static void printCircleArea(double n) {
+		System.out.println("원의 넓이는 " + (n*3.14*n) + "입니다.");
+	}
+
+8. 파라미터 두개를 받아 사각형의 넓이를 구하는 함수를 만드시오. -함수 이름 파라미터 이름 등은 개발자가 정할것
+	public static void S(int n1, int n2) {
+		System.out.println(n1*n2);
+		
+	}
+9. 파라미터 두개를 받아 삼각형의 넓이를 구하는 함수를 만드시오. -함수 이름 파라미터 이름 등은 개발자가 정할것
+	public static void S(int n1, int n2) {
+		System.out.println((n1*n2)/2);
+		
+	}
+
+10.아래의 별을 찍으시오.(함수 안써도 됨)
+     *
+    ***
+   *****
+  *******
+답
+		int n = 3;
+		for (int i = 1; i <= n; ++i) {
+			System.out.println("");
+			for (int j = n; j > i; --j) {
+				System.out.print(" ");
+			}
+			for (int j = 1; j <= i; ++j) {
+				System.out.print("*");
+			}
+			for (int k = 1; k <= i-1; ++k) {
+				System.out.print("*");
+			}
+		}
+
+11.왜 함수를 만들어 사용하는지에 대하여 설명하시오.
+같은 작업을 중복해서 실행하지 않도록 함수로 만들어 용량을 줄임(재사용성).
+함수를 사용하지 않으면 식이 너무 복잡해 짐. 함수로 인해 반복되는 코드가 줄어듦(가독성). 
+협업시 필요한 기능별로 정리하고, 구조적으로 작성할 수 있음(모듈화).
