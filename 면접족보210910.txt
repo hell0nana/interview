@@ -1,0 +1,232 @@
+1.인스턴스 변수란?
+class 안에 정의된 변수. 인스턴스가 생성될 때 생성되는 변수.
+
+2. 지역 변수란?
+특정한 구역 안에 생성되어 그 구역 안에서만 사용할수 있는 변수 <-> 전역변수
+
+3. 클래스의 구성 요소는?
+필드
+객체를 사용할 동안 지속적으로 사용되는 데이터가 저장되는 곳. 주로 private 사용(외부 접근 불가)
+생성자
+객체의 필드를 초기화시키는 메소드. 객체 생성시 자동 호출 됨. 
+명시적으로 만들지 않을 경우 디폴트 생성자를 자동으로 제공. 클래스명과 동일
+메소드
+외부와 내부를 연결. 소스코드를 묶어놓고 필요에 따라 호출
+변수, 상수
+
+4.원의 넓이는 구하는 프로그램**을 아래와 같이 작성하시오.
+- 원 클래스를 만들 것
+- 메인 메소드를 가진 다른 클래스에서 원 객체를 생성할 것
+답
+과정1
+class Circle09100 {
+	private double r;
+	
+	public void setR(int r) {
+		this.r = r;
+	}
+	public double wide() {
+		return r*r*Math.PI;
+	}
+}
+과정2
+	public static void main(String[] args) {
+		Circle09100 circle = new Circle09100();
+		circle.setR(10);
+		System.out.println("넓이는 " + circle.wide());
+
+	}
+
+5.사각형의 넓이를 구하는 프로그램
+- 사각형 클래스를 만들 것
+- 메인 메소드를 가진 다른 클래스에서 원 객체를 생성할 것
+답
+과정1
+class Rec0910 {
+	private double l;
+	private double w;
+
+	public void getL(double l) {
+		this.l = l;
+	}
+
+	public void getW(double w) {
+		this.w = w;
+	}
+
+	public double wide() {
+		return l * w;
+	}
+}
+과정2
+	public static void main(String [] args) {
+		Rec0910 rec = new Rec0910();
+		rec.getL(10);
+		rec.getW(10);
+		System.out.println("넓이는 :" + rec.wide());
+	}
+
+6.성적표 구하는 프로그램을 만드시오.
+- Grade 클래스 
+- 국영수 인스턴스 변수(각각의 setter getter 함수)
+-getToal ,getAvg()
+- 메인 메소드를 가진 다른 클래스에서 Grade 객체 
+답
+과정1
+class Grade0910 {
+	private int kor;
+	private int eng;
+	private int math;
+	public void setKor(int kor) {
+		this.kor = kor;
+	}
+	public void setEng(int eng) {
+		this.eng = eng;
+	}
+	public void setMath(int math) {
+		this.math = math;
+	}
+	public int getTotal() {
+		return kor + eng + math;
+	}
+	public double getAvg() {
+		return getTotal() / 3.0;
+	}
+	public char getGrade() {
+		char grade = '가';
+		if (getAvg() >= 90) {
+			grade = '수';
+		} else if (getAvg() >= 80) {
+			grade = '우';
+		} else if (getAvg() >= 70) {
+			grade = '미';
+		} else if (getAvg()>= 60) {
+			grade = '양';
+		} 
+		return grade;
+	}
+}
+과정2
+		Grade0910 grade = new Grade0910();
+		grade.setKor(100);
+		grade.setEng(100);
+		grade.setMath(100);
+		System.out.println(grade.getGrade());
+
+7. 아래의 클래스에 대하여, 메모리 그림을 그리시오.
+Rectangle r = new Rectangle(); 
+public class Rectangle {
+int height;
+int width;
+
+public int getHeight() {
+	return height;
+}
+
+public void setHeight(int height) {
+	this.height = height;
+}
+
+public int getWidth() {
+	return width;
+}
+
+public void setWidth(int width) {
+	this.width = width;
+}
+
+public int getArea() {
+	return width * height;
+}
+
+8. 클래스와 객체의 차이는?
+클래스-객체를 만드는 틀. 객체생성에 앞서 먼저 만들어야 함.
+객체-클래스로부터 만들어 지는 것. 클래스에 선언된 그대로 생성됨.
+클래스로 객체를 만드는 것을 인스턴스화 라고 함.
+
+9. 아래의 프로그램을 작성하시오.
+- 1 부터 num 까지 합을 구하는 class 를 작성하도록 하시오.
+1) 합을 구할 수 있는 GetSum클래스를 통해 getsum 객체를 생성
+2) num 까지의 합을 구해야 하므로 num값이 변할 수 있도록 num 변수를 선언ㅇ
+예를 들어서 50까지의 합을 구하기 위해 num변수에  50을 대입
+3) getsum객체의 setNum함수를 이용해  num(여기서는 50)값 저장
+4) getsum객체의 sum함수를 이용해 1부터 50(num)까지의 값을 구함
+답
+과정1
+class Getsum0910 {
+	private int num;
+	private int sum;
+	public void setNum (int num) {
+		this.num = num;
+	}
+	public int getSum() {
+		for (int i = 1; i <= num; ++i) {
+			sum+=i;
+		}
+		return sum;
+	}
+}
+과정2
+		Getsum0910 getsum = new Getsum0910();
+		getsum.setNum(10);
+		System.out.println(getsum.getSum());
+
+10. 아래의 클래스를 작성하시오.
+StarPrint strPrint = new StarPrint();
+strPrint.printTriangle(3); 
+System.out.println();
+strPrint.printReverseTriangle(3); 
+*
+**
+***
+
+***
+**
+*
+답
+과정1
+class StarPrint0910 {
+	public void printTriangle (int n) {
+		for (int i = 1; i <= n; ++i) {
+			System.out.println("");
+			for (int j = 1; j <= i; ++j) {
+				System.out.print("*");
+			}
+		}
+	}
+	public void printReverseTriangle (int n) {
+		for (int i = 1; i <= n; ++i) {
+			System.out.println("");
+			for (int j = n; j >= i; --j) {
+				System.out.print("*");
+			}
+		}
+	}
+}
+과정2
+		StarPrint0910 strprint = new StarPrint0910();
+		strprint.printTriangle(3);
+		System.out.println();
+		strprint.printReverseTriangle(3);
+
+11. 아래의 프로그래밍을 작성하시오.
+Gugudan gugudan = new Gugudan();
+gugudan.printGugu(10);  //1단부터 10단까지 출력
+gugudan.printGugu(20);  //1단부터 20단까지 출력
+답
+과정1
+class Gugudan0910 {
+	public void Gugudan(int n) {
+		for(int i = 1; i <= n; ++i) {
+			for(int j = 1; j <= 9; ++j) {
+				System.out.println(i + "*" + j + "=" + (i*j));
+			}
+		}
+	}
+}
+과정2
+	public static void main(String[] args) {
+		Gugudan0910 gugudan = new Gugudan0910();
+		gugudan.Gugudan(3);
+
+	}
