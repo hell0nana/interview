@@ -1,0 +1,187 @@
+1. is a 관계와 has a 관계에 대하여 설명하시오.
+is a - 속해있는 관계. 컴퓨터 - 노트북
+has a - 부품같은 관계. 컴퓨터 - 메모리
+
+2. 다형성(polymorphism)이란 무엇인가?
+데이터타입이 많다는 뜻. 하나의 객체가 여러가지 타입을 가질 수 있음.
+상위클래스로 하위클래스 객체를 생성가능함.
+상위 = 하위(); 의 형태. 상위에 없는 하위의 기능은 쓸 수 없지만 오버라이딩은 적용 됨.
+여러형태의 타입이 가능하지만 결국은 마지막 new로 덮어씌워짐.
+다형성 적용시 오버라이딩 된 상위함수는 외부에서 호출이 불가능.
+
+3. 아래가 되지 않는 이유에 대하여 메모리 그림으로 설명하시오.
+//소스코드는 오늘 소스 코드 내용을 참조해 주세요.
+//MobilePhone(부모) SmartPhone(자식)
+SmartPhone ph2 = new MobilePhone();
+?
+
+4.오버로딩 vs 오버라이딩 에 대하여 설명하시오.
+오버로딩 - 같은 함수 이름으로 파라미터 데이터 타입이나 갯수를 다르게 하는 것.
+오버라이딩 - 상속관계에 있는 하위클래스가 상위클래스와 같은 함수의 이름으로 내용을 다르게 하는 것.
+
+5 다음을 만족하는 클래스 Regular를 작성하시오. Series_02 (필수)
+- 클래스 Regular는 위에서 구현된 클래스 Employee의 하위 클래스
+- 생성자 : 이름, 나이, 주소, 부서를 지정하는 상위 생성자 호출
+- Setter : 월급 정보 필드를 지정
+- 메소드 printInfo() : 인자는 없고 "정규직"이라는 정보와 월급을 출력
+답
+package week5;
+
+class Employee09270 {
+	private String name, depart;
+	private int age, salary;
+
+	Employee09270(String name, int age, String depart, int salary) {
+		this.name = name;
+		this.depart = depart;
+		this.age = age;
+		this.salary = salary;
+	}
+
+	public void printInfo() {
+		System.out.println(name + age + depart + salary);
+	}
+}
+
+class Regular09270 extends Employee09270 {
+	private String address;
+
+	Regular09270(String name, int age, String depart, int salary, String address) {
+		super(name, age, depart, salary);
+		this.address = address;
+	}
+
+	public String setAddress() {
+		return address;
+	}
+
+	public void printInfo() {
+		super.printInfo();
+		System.out.print(address);
+	}
+
+}
+
+class Temporary09270 extends Employee09270 {
+
+	Temporary09270(String name, int age, String depart, int salary) {
+		super(name, age, depart, salary);
+	}
+
+}
+
+public class Java04 {
+	public static void main(String[] args) {
+		Employee09270 epl = new Employee09270("나나", 31, "개발", 100000000);
+		epl.printInfo();
+		Employee09270 ep2 = new Regular09270("민지", 25, "복지", 10000000, "서울");
+		ep2.printInfo();
+	}
+
+}
+
+6. 프로그래밍 (자바의 정석: 연습 문제 56page)
+답
+package week5;
+
+class Buyer0927 {
+	private int money;
+	private Product0927[] cart;
+	int i;
+
+	Buyer0927() {
+		this.money = 1000;
+		this.cart = new Product0927[3];
+		this.i = 0;
+	}
+
+	public void buy(Product0927 p) {
+		if (p.price > money) {
+			System.out.println("잔액이 부족하여 " + p + "를 살 수 없습니다.");
+			return;
+		} else {
+			money -= p.price; // 제품의 가격을 가진 돈에서 뺌
+			add(p); // 구입한 물건을 담는 메소드 호출
+		}
+
+	}
+
+	public void add(Product0927 p) {
+		if (i >= cart.length) {
+			Product0927[] newcart = new Product0927[cart.length * 2];
+			System.arraycopy(cart, 0, newcart, 0, cart.length); // 기존의 장바구니를 새로운 배열에 복사
+			cart = newcart; // 새로운 배열과 기존의 장바구니를 바꿈
+		}
+		cart[i++] = p; // 물건을 장바구니에 저장, i값 증가 - ?
+
+	}
+
+	public void summary() {
+		String item = " ";
+		int sum = 0;
+		for (int j = 0; j < cart.length; ++j) {
+			if (cart[j] == null) // 장바구니에 담긴 물건들의 목록을 만들어 출력 - ?
+				break;
+			item += cart[j] + ",";
+			sum += cart[j].price;
+		}
+		System.out.println("물건:" + item);
+		System.out.println("가격:" + sum);
+		System.out.println("남은 금액:" + (money));
+
+	}
+}
+
+class Product0927 {
+	int price;
+
+	protected Product0927(int price) {
+		this.price = price;
+	}
+
+}
+
+class TV0927 extends Product0927 {
+	TV0927() {
+		super(100);
+	}
+
+	public String toString() {
+		return "TV";
+	}
+}
+
+class Computer0927 extends Product0927 {
+	Computer0927() {
+		super(200);
+	}
+
+	public String toString() {
+		return "Computer";
+	}
+}
+
+class Audio0927 extends Product0927 {
+	Audio0927() {
+		super(50);
+	}
+
+	public String toString() {
+		return "Audio";
+
+	}
+}
+
+public class Java03_0927problem7 {
+	public static void main(String[] args) {
+		Buyer0927 b = new Buyer0927();
+		b.buy(new TV0927());
+		b.buy(new Computer0927());
+		b.buy(new TV0927());
+		b.buy(new Audio0927());
+		b.buy(new Computer0927());
+		b.buy(new Computer0927());
+		b.summary();
+
+	}
+}
